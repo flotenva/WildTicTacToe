@@ -1,0 +1,14 @@
+D:\OneDrive - Queensland University of Technology\IFQ563 Object Oriented Design\WildTicTacToe\WildTicTacToe\bin\Debug\net8.0\WildTicTacToe.exe
+D:\OneDrive - Queensland University of Technology\IFQ563 Object Oriented Design\WildTicTacToe\WildTicTacToe\bin\Debug\net8.0\WildTicTacToe.deps.json
+D:\OneDrive - Queensland University of Technology\IFQ563 Object Oriented Design\WildTicTacToe\WildTicTacToe\bin\Debug\net8.0\WildTicTacToe.runtimeconfig.json
+D:\OneDrive - Queensland University of Technology\IFQ563 Object Oriented Design\WildTicTacToe\WildTicTacToe\bin\Debug\net8.0\WildTicTacToe.dll
+D:\OneDrive - Queensland University of Technology\IFQ563 Object Oriented Design\WildTicTacToe\WildTicTacToe\bin\Debug\net8.0\WildTicTacToe.pdb
+D:\OneDrive - Queensland University of Technology\IFQ563 Object Oriented Design\WildTicTacToe\WildTicTacToe\obj\Debug\net8.0\WildTicTacToe.GeneratedMSBuildEditorConfig.editorconfig
+D:\OneDrive - Queensland University of Technology\IFQ563 Object Oriented Design\WildTicTacToe\WildTicTacToe\obj\Debug\net8.0\WildTicTacToe.AssemblyInfoInputs.cache
+D:\OneDrive - Queensland University of Technology\IFQ563 Object Oriented Design\WildTicTacToe\WildTicTacToe\obj\Debug\net8.0\WildTicTacToe.AssemblyInfo.cs
+D:\OneDrive - Queensland University of Technology\IFQ563 Object Oriented Design\WildTicTacToe\WildTicTacToe\obj\Debug\net8.0\WildTicTacToe.csproj.CoreCompileInputs.cache
+D:\OneDrive - Queensland University of Technology\IFQ563 Object Oriented Design\WildTicTacToe\WildTicTacToe\obj\Debug\net8.0\WildTicTacToe.dll
+D:\OneDrive - Queensland University of Technology\IFQ563 Object Oriented Design\WildTicTacToe\WildTicTacToe\obj\Debug\net8.0\refint\WildTicTacToe.dll
+D:\OneDrive - Queensland University of Technology\IFQ563 Object Oriented Design\WildTicTacToe\WildTicTacToe\obj\Debug\net8.0\WildTicTacToe.pdb
+D:\OneDrive - Queensland University of Technology\IFQ563 Object Oriented Design\WildTicTacToe\WildTicTacToe\obj\Debug\net8.0\WildTicTacToe.genruntimeconfig.cache
+D:\OneDrive - Queensland University of Technology\IFQ563 Object Oriented Design\WildTicTacToe\WildTicTacToe\obj\Debug\net8.0\ref\WildTicTacToe.dll
