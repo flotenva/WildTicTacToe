@@ -1,10 +1,8 @@
-﻿using System.Runtime.InteropServices;
-
-namespace WildTicTacToe
+﻿namespace WildTicTacToe
 {
     class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             Board board = new Board();
             Menu.DisplayWelcome();      // Welcome message
@@ -68,7 +66,6 @@ namespace WildTicTacToe
             {
                 Console.Clear();
                 board.DisplayBoard();
-
                 // Alternate between player 1 and player 2
                 // When gameTurn is an even number, player1 makes a move
                 if (gameTurn % 2 == 0)
@@ -99,6 +96,15 @@ namespace WildTicTacToe
             {
                 Console.WriteLine("Oops. It's a draw!");
             }
+            
+            // Return to main menu in 3 seconds and show countdown 3,2,1 
+            for(int i = 5; i > 0; i--)
+            {
+                Console.WriteLine($"Returning to main menu in {i}...");
+                System.Threading.Thread.Sleep(1000);
+            }
+
+            Program.Main(null);
         }
     }
 }

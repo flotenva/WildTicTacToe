@@ -44,8 +44,7 @@
             Console.WriteLine("1. Make a move");
             Console.WriteLine("2. Check Instructions");
             Console.WriteLine("3. Save game");
-            Console.WriteLine("4. Return to main menu");
-            Console.WriteLine("5. Quit game");
+            Console.WriteLine("4. Quit game and return to main menu");
         }
     }
 }
