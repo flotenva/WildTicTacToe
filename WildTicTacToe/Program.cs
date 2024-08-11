@@ -1,22 +1,35 @@
-﻿namespace WildTicTacToe
+﻿using System.Runtime.InteropServices;
+
+namespace WildTicTacToe
 {
     class Program
     {
         static void Main(string[] args)
         {
             Board board = new Board();
+            Menu.DisplayWelcome();      // Welcome message
+            Menu.DisplayMainOptions();  // Display main options
+            do
+            {
+                int option;
+                int.TryParse(Console.ReadLine(), out option);
 
-            // Welcome message
-            Console.Clear();
-            Console.WriteLine("###################################");
-            Console.WriteLine("## IFQ563 Object Oriented Design ##");
-            Console.WriteLine("## Assignment 2: Implementation  ##");
-            Console.WriteLine("###################################\n");
-            Console.WriteLine("###################################");
-            Console.WriteLine("## Welcome to Wild Tic Tac Toe!  ##");
-            Console.WriteLine("###################################\n");
-
-            PlayGame(board);
+                switch (option)
+                {
+                    case 1:
+                        PlayGame(board);
+                        break;
+                    case 2:
+                        // Load Game
+                        break;
+                    case 3:
+                        Menu.DisplayInstructions();
+                        break;
+                    default:
+                        Console.WriteLine("Invalid option selected. Please try again.\n");
+                        break;
+                }
+            } while (true);
         }
 
         static void PlayGame(Board board)
@@ -25,17 +38,16 @@
             Player player2 = null;
             bool gameWon = false;
             int gameTurn = 0;
-            int mode;
+            string gameWinner;
+            int gameMode;
 
-            // Menu with available game modes
+            // Select Game Mode
             do
             {
-                Console.WriteLine("Select game mode:");
-                Console.WriteLine("1. Human vs Human");
-                Console.WriteLine("2. Computer vs Human");
-                int.TryParse(Console.ReadLine(), out mode);
+                Menu.DisplayGameMode();
+                int.TryParse(Console.ReadLine(), out gameMode);
 
-                switch (mode)
+                switch (gameMode)
                 {
                     case 1:
                         player1 = new HumanPlayer();
@@ -49,9 +61,9 @@
                         Console.WriteLine("Invalid mode selected. Please try again.\n");
                         break;
                 }
-            } while (mode != 1 && mode != 2);
+            } while (gameMode != 1 && gameMode != 2);
 
-            
+            // Start the game
             while (gameTurn < 9 && !gameWon)
             {
                 Console.Clear();
@@ -80,8 +92,8 @@
 
             if (gameWon)
             {
-                string winner = (gameTurn % 2 == 0) ? "Player 2" : "Player 1";
-                Console.WriteLine($"Congratulations! {winner} is the winner of the WildTicTacToe game!");
+                gameWinner = (gameTurn % 2 != 0) ? "Player 1" : "Player 2";
+                Console.WriteLine($"\nCongratulations! {gameWinner} is the winner of the WildTicTacToe game!");
             }
             else
             {
