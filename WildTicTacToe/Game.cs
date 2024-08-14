@@ -29,7 +29,7 @@
             string gameResult = gameWon ? $"Congratulations! {(gameTurn % 2 != 0 ? "Player 1" : "Player 2")} is the winner of the WildTicTacToe game!" : "Oops. It's a draw!";
             Console.WriteLine($"\n{gameResult}"); // Display the winner of the game
 
-            CountDownMessage("Returning to Main Menu in");
+            Menu.CountDownMessage("Returning to Main Menu in");
 
             Program.Main(null);
 
@@ -81,14 +81,14 @@
                                             Program.Main(null);
                                             break;
                                         default:
-                                            CountDownMessage("Invalid option. Try again in", 3);
+                                            Menu.CountDownMessage("Invalid option.", 3);
                                             break;
                                     }
                                 } while (optionNo != 1);
                                 break;
 
                             default:
-                                CountDownMessage("Invalid option. Try again in", 3);
+                                Menu.CountDownMessage("Invalid option.", 3);
                                 break;
                         }
                     } while (option != "MOVE");
@@ -121,17 +121,6 @@
                 board.DisplayBoard();
                 Console.WriteLine($"Game saved successfully at {filePath}\n");
             }
-
-            static void CountDownMessage (string text, int seconds = 5)
-            {
-                for (int i = seconds; i > 0; i--)
-                {
-                    Console.Write($"{text} {i}...");
-                    Thread.Sleep(1000);
-                    Console.SetCursorPosition(0, Console.CursorTop);
-                }
-            }
-
         }
 
         // PUBLIC METHODS //
@@ -143,11 +132,10 @@
             int gameTurn = 0;
             int gameMode;
 
-            Menu.DisplayWelcome();
-            Menu.DisplayGameMode();
-
             do
             {
+                Menu.DisplayWelcome();
+                Menu.DisplayGameMode();
                 int.TryParse(Console.ReadLine(), out gameMode);
 
                 switch (gameMode)
@@ -161,9 +149,7 @@
                         player2 = new ComputerPlayer();
                         break;
                     default:
-                        Menu.DisplayWelcome();
-                        Menu.DisplayGameMode();
-                        Console.WriteLine("\nInvalid mode selected. Please try again.");
+                        Menu.CountDownMessage("Invalid mode selected.", 3);
                         break;
                 }
             } while (gameMode != 1 && gameMode != 2);

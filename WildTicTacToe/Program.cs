@@ -8,6 +8,10 @@
             Menu.DisplayMainOptions();  // Display main options
             do
             {
+                Menu.DisplayWelcome();
+                Console.WriteLine("Select an option:");
+                Menu.DisplayMainOptions();
+                
                 int option;
                 int.TryParse(Console.ReadLine(), out option);
 
@@ -28,9 +32,7 @@
                         Environment.Exit(0);
                         break;
                     default:
-                        Menu.DisplayWelcome();
-                        Menu.DisplayMainOptions();
-                        Console.WriteLine("\nInvalid option selected. Please try again.");
+                        Menu.CountDownMessage("Invalid option.", 3);
                         break;
                 }
             } while (true);

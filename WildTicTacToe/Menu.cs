@@ -43,5 +43,15 @@
             Console.WriteLine("3. Save game");
             Console.WriteLine("4. Quit game and return to main menu");
         }
+
+        public static void CountDownMessage (string text, int seconds = 5)
+            {
+                for (int i = seconds; i > 0; i--)
+                {
+                    Console.Write($"{text} {"Try again in"} {i}...");
+                    Thread.Sleep(1000);
+                    Console.SetCursorPosition(0, Console.CursorTop);
+                }
+            }
     }
 }

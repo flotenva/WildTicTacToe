@@ -10,17 +10,35 @@
 
             while (!validMove)
             {
-                Console.Clear();
                 board.DisplayBoard();
+                // Get the row from player
+                do
+                {
+                    Console.Write("Enter row number (0, 1, or 2): ");
+                } while (!int.TryParse(Console.ReadLine(), out row) || row < 0 || row > 2);
 
-                Console.Write("Enter row (0, 1, or 2): ");
-                row = Convert.ToInt32(Console.ReadLine());
+                // Get the column from player
+                do
+                {
+                    Console.Write("Enter column number (0, 1, or 2): ");
+                } while (!int.TryParse(Console.ReadLine(), out col) || col < 0 || col > 2);
 
-                Console.Write("Enter column (0, 1, or 2): ");
-                col = Convert.ToInt32(Console.ReadLine());
+                // Get the piece from player
+                do
+                {
+                    Console.Write("Enter piece (X or O): ");
+                    string input = Console.ReadLine()?.ToUpper();
 
-                Console.Write("Enter piece (X or O): ");
-                piece = Convert.ToChar(Console.ReadLine().ToUpper());
+                    if (!string.IsNullOrEmpty(input) && (input == "X" || input == "O"))
+                    {
+                        piece = input[0];
+                    }
+                    else
+                    {
+                        piece = '\0'; // Reset piece to an invalid value to continue the loop
+                    }
+                } while (piece != 'X' && piece != 'O');
+
 
                 if (board.IsValidMove(row, col, piece))
                 {
@@ -29,7 +47,7 @@
                 }
                 else
                 {
-                    Console.WriteLine("Invalid move. Try again.");
+                    Menu.CountDownMessage("Invalid move.", 3);
                 }
             }
         }
