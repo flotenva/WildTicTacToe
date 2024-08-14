@@ -101,6 +101,7 @@
 
         public void DisplayBoard()
         {
+            Console.Clear();
             Console.WriteLine("  0 1 2");
             for (int r = 0; r < 3; r++)
             {
@@ -113,6 +114,17 @@
                 Console.WriteLine();
                 if (r < 2) Console.WriteLine("  -----");
             }
+            Console.WriteLine();
+        }
+
+        public char GetPiece(int row, int col)
+        {
+            return board[row, col];
+        }
+
+        public void SetPiece(int row, int col, char piece)
+        {
+            board[row, col] = piece;
         }
     }
 }

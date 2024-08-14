@@ -14,16 +14,23 @@
                 switch (option)
                 {
                     case 1:
-                        Game.InitialiseGame();
+                        // Start new game
+                        Game.InitialiseNewGame();
                         break;
                     case 2:
-                        // Load Game
+                        // Load game
+                        Game.LoadGame();
                         break;
                     case 3:
-                        Menu.DisplayInstructions();
+                        // Exit game
+                        Console.WriteLine("Exiting the game. Goodbye!");
+                        Thread.Sleep(3000);
+                        Environment.Exit(0);
                         break;
                     default:
-                        Console.WriteLine("Invalid option selected. Please try again.\n");
+                        Menu.DisplayWelcome();
+                        Menu.DisplayMainOptions();
+                        Console.WriteLine("\nInvalid option selected. Please try again.");
                         break;
                 }
             } while (true);
