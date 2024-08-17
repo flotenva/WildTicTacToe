@@ -1,0 +1,6 @@
+X  
+   
+ O 
+2
+HumanPlayer
+ComputerPlayer
