@@ -2,6 +2,7 @@
 {
     public class Game
     {
+        
         public static void RunGame(Board board, Player player1, Player player2, int gameTurn)
         {
 
@@ -23,13 +24,8 @@
                 gameTurn++;
             }
 
-
             //// GAME ENDS ////
-            board.DisplayBoard();
-            string gameResult = gameWon ? $"Congratulations! {(gameTurn % 2 != 0 ? "Player 1" : "Player 2")} is the winner of the WildTicTacToe game!" : "Oops. It's a draw!";
-            Console.WriteLine($"\n{gameResult}"); // Display the winner of the game
-            Menu.CountDownMessage("Returning to Main Menu in");
-            Program.Main();
+            EndGame(board, gameTurn, gameWon);
         }
 
         private static void PlayerTurn(Player player, Board board, Player player1, Player player2, int gameTurn, string playerName)
@@ -188,5 +184,12 @@
             Console.WriteLine($"Game saved successfully at {filePath}\n");
         }
 
+        private static void EndGame(Board board, int gameTurn, bool gameWon){
+            board.DisplayBoard();
+            string gameResult = gameWon ? $"Congratulations! {(gameTurn % 2 != 0 ? "Player 1" : "Player 2")} is the winner of the WildTicTacToe game!" : "Oops. It's a draw!";
+            Console.WriteLine($"\n{gameResult}"); // Display the winner of the game
+            Menu.CountDownMessage("Returning to Main Menu in");
+            Program.Main();
+        }
     }
 }
