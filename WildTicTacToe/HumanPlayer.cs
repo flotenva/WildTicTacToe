@@ -11,23 +11,23 @@
             while (!validMove)
             {
                 board.DisplayBoard();
-                // Get the row from player
+                // Get row from player
                 do
                 {
                     Console.Write("Enter row number (0, 1, or 2): ");
                 } while (!int.TryParse(Console.ReadLine(), out row) || row < 0 || row > 2);
 
-                // Get the column from player
+                // Get column from player
                 do
                 {
                     Console.Write("Enter column number (0, 1, or 2): ");
                 } while (!int.TryParse(Console.ReadLine(), out col) || col < 0 || col > 2);
 
-                // Get the piece from player
+                // Get piece from player
                 do
                 {
                     Console.Write("Enter piece (X or O): ");
-                    string input = Console.ReadLine().ToUpper();
+                    string input = Console.ReadLine()?.ToUpper() ?? string.Empty;
 
                     if (!string.IsNullOrEmpty(input) && (input == "X" || input == "O"))
                     {
@@ -42,7 +42,7 @@
 
                 if (board.IsValidMove(row, col, piece))
                 {
-                    board.MakeMove(row, col, piece);
+                    board.UpdateBoard(row, col, piece);
                     validMove = true;
                 }
                 else

@@ -2,7 +2,7 @@
 {
     public class Game
     {
-        
+
         public static void RunGame(Board board, Player player1, Player player2, int gameTurn)
         {
 

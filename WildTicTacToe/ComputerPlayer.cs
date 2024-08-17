@@ -6,8 +6,8 @@
 
         public override void MakeMove(Board board)
         {
-            int row = 0, col = 0;
-            char piece = ' ';
+            int row, col;
+            char piece;
 
             bool validMove = false;
 
@@ -21,7 +21,7 @@
                 // Uses the board's IsValidMove method to check if the move is valid
                 if (board.IsValidMove(row, col, piece))
                 {
-                    board.MakeMove(row, col, piece);
+                    board.UpdateBoard(row, col, piece);
                     validMove = true;
                 }
             }

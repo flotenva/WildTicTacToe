@@ -34,7 +34,7 @@
         }
 
         // Overwrite the board slot with the player's move
-        public override void MakeMove(int row, int col, char piece)
+        public override void UpdateBoard(int row, int col, char piece)
         {
             if (IsValidMove(row, col, piece))
             {
