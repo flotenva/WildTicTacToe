@@ -27,7 +27,7 @@
                 do
                 {
                     Console.Write("Enter piece (X or O): ");
-                    string input = Console.ReadLine()?.ToUpper();
+                    string input = Console.ReadLine().ToUpper();
 
                     if (!string.IsNullOrEmpty(input) && (input == "X" || input == "O"))
                     {

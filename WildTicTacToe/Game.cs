@@ -28,105 +28,73 @@
             board.DisplayBoard();
             string gameResult = gameWon ? $"Congratulations! {(gameTurn % 2 != 0 ? "Player 1" : "Player 2")} is the winner of the WildTicTacToe game!" : "Oops. It's a draw!";
             Console.WriteLine($"\n{gameResult}"); // Display the winner of the game
-
             Menu.CountDownMessage("Returning to Main Menu in");
+            Program.Main();
+        }
 
-            Program.Main(null);
-
-            // METHODS //
-
-            static void PlayerTurn(Player player, Board board, Player player1, Player player2, int gameTurn, string playerName)
+        private static void PlayerTurn(Player player, Board board, Player player1, Player player2, int gameTurn, string playerName)
+        {
+            if (player.GetType().Name == nameof(ComputerPlayer))
+                player.MakeMove(board);
+            else
             {
-                if (player.GetType().Name == nameof(ComputerPlayer))
-                    player.MakeMove(board);
-                else
+                string? option;
+                do
                 {
-                    string? option;
-                    do
+                    board.DisplayBoard();
+                    Console.WriteLine($"{playerName}'s turn: enter MOVE to make a move, or enter OPTIONS to view game options.");
+                    option = Console.ReadLine()?.ToUpper();
+                    switch (option)
                     {
-                        board.DisplayBoard();
-                        Console.WriteLine($"{playerName}'s turn: enter MOVE to make a move, or enter OPTIONS to view game options.");
-                        option = Console.ReadLine()?.ToUpper();
-                        switch (option)
-                        {
-                            case "MOVE":
-                                player.MakeMove(board);
-                                break;
-                            case "OPTIONS":
-                                int optionNo = 0;
-                                do
+                        case "MOVE":
+                            player.MakeMove(board);
+                            break;
+                        case "OPTIONS":
+                            int optionNo = 0;
+                            do
+                            {
+                                board.DisplayBoard();
+                                Menu.DisplayGameOptions();
+                                int.TryParse(Console.ReadLine(), out optionNo);
+                                switch (optionNo)
                                 {
-                                    board.DisplayBoard();
-                                    Menu.DisplayGameOptions();
-                                    int.TryParse(Console.ReadLine(), out optionNo);
-                                    switch (optionNo)
-                                    {
-                                        case 1:
-                                            // 1. Return to game
-                                            break;
-                                        case 2:
-                                            // 2. Display instructions
-                                            Menu.DisplayInstructions();
-                                            Console.WriteLine("Press Any Key to Continue...");
-                                            Console.ReadKey();
-                                            break;
-                                        case 3:
-                                            // 3. Save game
-                                            SaveGame(board, player1, player2, gameTurn);
-                                            Console.WriteLine("Press Any Key to Continue...");
-                                            Console.ReadKey();
-                                            break;
-                                        case 4:
-                                            // 4. Quit game and return to main menu
-                                            Program.Main(null);
-                                            break;
-                                        default:
-                                            Menu.CountDownMessage("Invalid option.", 3);
-                                            break;
-                                    }
-                                } while (optionNo != 1);
-                                break;
+                                    case 1:
+                                        // 1. Return to game
+                                        break;
+                                    case 2:
+                                        // 2. Display instructions
+                                        Menu.DisplayInstructions();
+                                        Console.WriteLine("Press Any Key to Continue...");
+                                        Console.ReadKey();
+                                        break;
+                                    case 3:
+                                        // 3. Save game
+                                        SaveGame(board, player1, player2, gameTurn);
+                                        Console.WriteLine("Press Any Key to Continue...");
+                                        Console.ReadKey();
+                                        break;
+                                    case 4:
+                                        // 4. Quit game and return to main menu
+                                        Program.Main();
+                                        break;
+                                    default:
+                                        Menu.CountDownMessage("Invalid option.", 3);
+                                        break;
+                                }
+                            } while (optionNo != 1);
+                            break;
 
-                            default:
-                                Menu.CountDownMessage("Invalid option.", 3);
-                                break;
-                        }
-                    } while (option != "MOVE");
-                }
-            }
-
-            static void SaveGame(Board board, Player player1, Player player2, int gameTurn)
-            {
-                string filePath = Path.Combine(Directory.GetCurrentDirectory(), "savedGame.txt");
-                using var fs = new FileStream(filePath, FileMode.Create);
-                using var writer = new StreamWriter(fs);
-                {
-                    // Save the board state
-                    for (int r = 0; r < 3; r++)
-                    {
-                        for (int c = 0; c < 3; c++)
-                        {
-                            writer.Write(board.GetPiece(r, c));
-                        }
-                        writer.WriteLine();
+                        default:
+                            Menu.CountDownMessage("Invalid option.", 3);
+                            break;
                     }
-
-                    // Save the game turn
-                    writer.WriteLine(gameTurn);
-
-                    // Save player types
-                    writer.WriteLine(player1.GetType().Name);
-                    writer.WriteLine(player2.GetType().Name);
-                }
-                board.DisplayBoard();
-                Console.WriteLine($"Game saved successfully at {filePath}\n");
+                } while (option != "MOVE");
             }
         }
 
-        // PUBLIC METHODS //
         public static void InitialiseNewGame()
         {
-            Board board = new Board();
+            Board board = new WildTicTacToeBoard();
             Player player1 = null;
             Player player2 = null;
             int gameTurn = 0;
@@ -159,7 +127,7 @@
 
         public static void LoadGame()
         {
-            Board board = new Board();
+            Board board = new WildTicTacToeBoard();
             Player player1 = null;
             Player player2 = null;
             int gameTurn = 0;
@@ -192,5 +160,33 @@
 
             RunGame(board, player1, player2, gameTurn);
         }
+
+        private static void SaveGame(Board board, Player player1, Player player2, int gameTurn)
+        {
+            string filePath = Path.Combine(Directory.GetCurrentDirectory(), "savedGame.txt");
+            using var fs = new FileStream(filePath, FileMode.Create);
+            using var writer = new StreamWriter(fs);
+            {
+                // Save the board state
+                for (int r = 0; r < 3; r++)
+                {
+                    for (int c = 0; c < 3; c++)
+                    {
+                        writer.Write(board.GetPiece(r, c));
+                    }
+                    writer.WriteLine();
+                }
+
+                // Save the game turn
+                writer.WriteLine(gameTurn);
+
+                // Save player types
+                writer.WriteLine(player1.GetType().Name);
+                writer.WriteLine(player2.GetType().Name);
+            }
+            board.DisplayBoard();
+            Console.WriteLine($"Game saved successfully at {filePath}\n");
+        }
+
     }
 }

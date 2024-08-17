@@ -2,7 +2,7 @@
 {
     class Program
     {
-        public static void Main(string[] args)
+        public static void Main()
         {
             Menu.DisplayWelcome();      // Welcome message
             Menu.DisplayMainOptions();  // Display main options
